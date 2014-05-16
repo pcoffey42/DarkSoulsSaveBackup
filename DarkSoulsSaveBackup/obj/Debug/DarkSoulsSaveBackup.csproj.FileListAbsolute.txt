@@ -1,0 +1,12 @@
+C:\PersonalGit\DarkSoulsSaveBackup\DarkSoulsSaveBackup\bin\Debug\DarkSoulsSaveBackup.exe.config
+C:\PersonalGit\DarkSoulsSaveBackup\DarkSoulsSaveBackup\obj\Debug\DarkSoulsSaveBackup.csprojResolveAssemblyReference.cache
+C:\PersonalGit\DarkSoulsSaveBackup\DarkSoulsSaveBackup\obj\Debug\DarkSoulsSaveBackup.MainForm.resources
+C:\PersonalGit\DarkSoulsSaveBackup\DarkSoulsSaveBackup\obj\Debug\DarkSoulsSaveBackup.Properties.Resources.resources
+C:\PersonalGit\DarkSoulsSaveBackup\DarkSoulsSaveBackup\obj\Debug\DarkSoulsSaveBackup.csproj.GenerateResource.Cache
+C:\PersonalGit\DarkSoulsSaveBackup\DarkSoulsSaveBackup\bin\Debug\DarkSoulsSaveBackup.exe
+C:\PersonalGit\DarkSoulsSaveBackup\DarkSoulsSaveBackup\bin\Debug\DarkSoulsSaveBackup.pdb
+C:\PersonalGit\DarkSoulsSaveBackup\DarkSoulsSaveBackup\obj\Debug\DarkSoulsSaveBackup.exe
+C:\PersonalGit\DarkSoulsSaveBackup\DarkSoulsSaveBackup\obj\Debug\DarkSoulsSaveBackup.pdb
+C:\PersonalGit\DarkSoulsSaveBackup\bin\Debug\DarkSoulsSaveBackup.exe.config
+C:\PersonalGit\DarkSoulsSaveBackup\obj\Debug\DarkSoulsSaveBackup.exe
+C:\PersonalGit\DarkSoulsSaveBackup\obj\Debug\DarkSoulsSaveBackup.pdb
