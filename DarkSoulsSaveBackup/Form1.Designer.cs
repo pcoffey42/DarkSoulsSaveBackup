@@ -53,6 +53,10 @@ namespace DarkSoulsSaveBackup
             this.btn_Drk1BackupCurrentSave = new System.Windows.Forms.Button();
             this.lbl_Drk1Sav = new System.Windows.Forms.Label();
             this.txt_Drk1SaveLoc = new System.Windows.Forms.TextBox();
+            this.lbl_Drk1Warn = new System.Windows.Forms.Label();
+            this.lbl_Drk2Warn = new System.Windows.Forms.Label();
+            this.btn_Drk1ClearBackups = new System.Windows.Forms.Button();
+            this.btn_Drk2ClearBackups = new System.Windows.Forms.Button();
             this.grp_Drk2.SuspendLayout();
             this.grp_Drk1.SuspendLayout();
             this.SuspendLayout();
@@ -62,6 +66,8 @@ namespace DarkSoulsSaveBackup
             this.grp_Drk2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.grp_Drk2.Controls.Add(this.btn_Drk2ClearBackups);
+            this.grp_Drk2.Controls.Add(this.lbl_Drk2Warn);
             this.grp_Drk2.Controls.Add(this.lstBox_Drk2SaveGames);
             this.grp_Drk2.Controls.Add(this.btn_Drk2LoadSelectedSave);
             this.grp_Drk2.Controls.Add(this.btn_Drk2BackupCurrentSave);
@@ -137,6 +143,8 @@ namespace DarkSoulsSaveBackup
             // 
             this.grp_Drk1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.grp_Drk1.Controls.Add(this.btn_Drk1ClearBackups);
+            this.grp_Drk1.Controls.Add(this.lbl_Drk1Warn);
             this.grp_Drk1.Controls.Add(this.lstBox_Drk1SaveGames);
             this.grp_Drk1.Controls.Add(this.btn_Drk1LoadSelectedSave);
             this.grp_Drk1.Controls.Add(this.btn_Drk1SavBrowse);
@@ -168,6 +176,7 @@ namespace DarkSoulsSaveBackup
             this.btn_Drk1LoadSelectedSave.TabIndex = 9;
             this.btn_Drk1LoadSelectedSave.Text = "Load Selected Save";
             this.btn_Drk1LoadSelectedSave.UseVisualStyleBackColor = true;
+            this.btn_Drk1LoadSelectedSave.Click += new System.EventHandler(this.btn_Drk1LoadSelectedSave_Click);
             // 
             // btn_Drk1SavBrowse
             // 
@@ -188,6 +197,7 @@ namespace DarkSoulsSaveBackup
             this.btn_Drk1BackupCurrentSave.TabIndex = 8;
             this.btn_Drk1BackupCurrentSave.Text = "Backup Current Save";
             this.btn_Drk1BackupCurrentSave.UseVisualStyleBackColor = true;
+            this.btn_Drk1BackupCurrentSave.Click += new System.EventHandler(this.btn_Drk1BackupCurrentSave_Click);
             // 
             // lbl_Drk1Sav
             // 
@@ -207,6 +217,49 @@ namespace DarkSoulsSaveBackup
             this.txt_Drk1SaveLoc.ReadOnly = true;
             this.txt_Drk1SaveLoc.Size = new System.Drawing.Size(561, 20);
             this.txt_Drk1SaveLoc.TabIndex = 0;
+            // 
+            // lbl_Drk1Warn
+            // 
+            this.lbl_Drk1Warn.AutoSize = true;
+            this.lbl_Drk1Warn.BackColor = System.Drawing.SystemColors.Control;
+            this.lbl_Drk1Warn.ForeColor = System.Drawing.Color.Red;
+            this.lbl_Drk1Warn.Location = new System.Drawing.Point(85, 46);
+            this.lbl_Drk1Warn.Name = "lbl_Drk1Warn";
+            this.lbl_Drk1Warn.Size = new System.Drawing.Size(35, 13);
+            this.lbl_Drk1Warn.TabIndex = 11;
+            this.lbl_Drk1Warn.Text = "label1";
+            this.lbl_Drk1Warn.Visible = false;
+            // 
+            // lbl_Drk2Warn
+            // 
+            this.lbl_Drk2Warn.AutoSize = true;
+            this.lbl_Drk2Warn.BackColor = System.Drawing.SystemColors.Control;
+            this.lbl_Drk2Warn.ForeColor = System.Drawing.Color.Red;
+            this.lbl_Drk2Warn.Location = new System.Drawing.Point(85, 48);
+            this.lbl_Drk2Warn.Name = "lbl_Drk2Warn";
+            this.lbl_Drk2Warn.Size = new System.Drawing.Size(35, 13);
+            this.lbl_Drk2Warn.TabIndex = 12;
+            this.lbl_Drk2Warn.Text = "label2";
+            this.lbl_Drk2Warn.Visible = false;
+            // 
+            // btn_Drk1ClearBackups
+            // 
+            this.btn_Drk1ClearBackups.Location = new System.Drawing.Point(271, 74);
+            this.btn_Drk1ClearBackups.Name = "btn_Drk1ClearBackups";
+            this.btn_Drk1ClearBackups.Size = new System.Drawing.Size(116, 23);
+            this.btn_Drk1ClearBackups.TabIndex = 12;
+            this.btn_Drk1ClearBackups.Text = "Clear Backups";
+            this.btn_Drk1ClearBackups.UseVisualStyleBackColor = true;
+            this.btn_Drk1ClearBackups.Click += new System.EventHandler(this.btn_Drk1ClearBackups_Click);
+            // 
+            // btn_Drk2ClearBackups
+            // 
+            this.btn_Drk2ClearBackups.Location = new System.Drawing.Point(271, 73);
+            this.btn_Drk2ClearBackups.Name = "btn_Drk2ClearBackups";
+            this.btn_Drk2ClearBackups.Size = new System.Drawing.Size(116, 23);
+            this.btn_Drk2ClearBackups.TabIndex = 13;
+            this.btn_Drk2ClearBackups.Text = "Clear Backups";
+            this.btn_Drk2ClearBackups.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
@@ -229,5 +282,9 @@ namespace DarkSoulsSaveBackup
         private ListBox lstBox_Drk1SaveGames;
         private Button btn_Drk1LoadSelectedSave;
         private Button btn_Drk1BackupCurrentSave;
+        private Label lbl_Drk2Warn;
+        private Label lbl_Drk1Warn;
+        private Button btn_Drk2ClearBackups;
+        private Button btn_Drk1ClearBackups;
     }
 }
