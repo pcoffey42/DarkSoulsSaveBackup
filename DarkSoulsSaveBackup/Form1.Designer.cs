@@ -40,6 +40,8 @@ namespace DarkSoulsSaveBackup
         private void InitializeComponent()
         {
             this.grp_Drk2 = new System.Windows.Forms.GroupBox();
+            this.btn_Drk2ClearBackups = new System.Windows.Forms.Button();
+            this.lbl_Drk2Warn = new System.Windows.Forms.Label();
             this.lstBox_Drk2SaveGames = new System.Windows.Forms.ListBox();
             this.btn_Drk2LoadSelectedSave = new System.Windows.Forms.Button();
             this.btn_Drk2BackupCurrentSave = new System.Windows.Forms.Button();
@@ -47,16 +49,14 @@ namespace DarkSoulsSaveBackup
             this.txt_Drk2SaveLoc = new System.Windows.Forms.TextBox();
             this.lbl_Drk2Sav = new System.Windows.Forms.Label();
             this.grp_Drk1 = new System.Windows.Forms.GroupBox();
+            this.btn_Drk1ClearBackups = new System.Windows.Forms.Button();
+            this.lbl_Drk1Warn = new System.Windows.Forms.Label();
             this.lstBox_Drk1SaveGames = new System.Windows.Forms.ListBox();
             this.btn_Drk1LoadSelectedSave = new System.Windows.Forms.Button();
             this.btn_Drk1SavBrowse = new System.Windows.Forms.Button();
             this.btn_Drk1BackupCurrentSave = new System.Windows.Forms.Button();
             this.lbl_Drk1Sav = new System.Windows.Forms.Label();
             this.txt_Drk1SaveLoc = new System.Windows.Forms.TextBox();
-            this.lbl_Drk1Warn = new System.Windows.Forms.Label();
-            this.lbl_Drk2Warn = new System.Windows.Forms.Label();
-            this.btn_Drk1ClearBackups = new System.Windows.Forms.Button();
-            this.btn_Drk2ClearBackups = new System.Windows.Forms.Button();
             this.grp_Drk2.SuspendLayout();
             this.grp_Drk1.SuspendLayout();
             this.SuspendLayout();
@@ -81,6 +81,28 @@ namespace DarkSoulsSaveBackup
             this.grp_Drk2.TabStop = false;
             this.grp_Drk2.Text = "Dark Souls 2";
             // 
+            // btn_Drk2ClearBackups
+            // 
+            this.btn_Drk2ClearBackups.Location = new System.Drawing.Point(271, 73);
+            this.btn_Drk2ClearBackups.Name = "btn_Drk2ClearBackups";
+            this.btn_Drk2ClearBackups.Size = new System.Drawing.Size(116, 23);
+            this.btn_Drk2ClearBackups.TabIndex = 13;
+            this.btn_Drk2ClearBackups.Text = "Clear Backups";
+            this.btn_Drk2ClearBackups.UseVisualStyleBackColor = true;
+            this.btn_Drk2ClearBackups.Click += new System.EventHandler(this.btn_Drk2ClearBackups_Click);
+            // 
+            // lbl_Drk2Warn
+            // 
+            this.lbl_Drk2Warn.AutoSize = true;
+            this.lbl_Drk2Warn.BackColor = System.Drawing.SystemColors.Control;
+            this.lbl_Drk2Warn.ForeColor = System.Drawing.Color.Red;
+            this.lbl_Drk2Warn.Location = new System.Drawing.Point(85, 48);
+            this.lbl_Drk2Warn.Name = "lbl_Drk2Warn";
+            this.lbl_Drk2Warn.Size = new System.Drawing.Size(35, 13);
+            this.lbl_Drk2Warn.TabIndex = 12;
+            this.lbl_Drk2Warn.Text = "label2";
+            this.lbl_Drk2Warn.Visible = false;
+            // 
             // lstBox_Drk2SaveGames
             // 
             this.lstBox_Drk2SaveGames.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -100,6 +122,7 @@ namespace DarkSoulsSaveBackup
             this.btn_Drk2LoadSelectedSave.TabIndex = 7;
             this.btn_Drk2LoadSelectedSave.Text = "Load Selected Save";
             this.btn_Drk2LoadSelectedSave.UseVisualStyleBackColor = true;
+            this.btn_Drk2LoadSelectedSave.Click += new System.EventHandler(this.btn_Drk2LoadSelectedSave_Click);
             // 
             // btn_Drk2BackupCurrentSave
             // 
@@ -109,6 +132,7 @@ namespace DarkSoulsSaveBackup
             this.btn_Drk2BackupCurrentSave.TabIndex = 6;
             this.btn_Drk2BackupCurrentSave.Text = "Backup Current Save";
             this.btn_Drk2BackupCurrentSave.UseVisualStyleBackColor = true;
+            this.btn_Drk2BackupCurrentSave.Click += new System.EventHandler(this.btn_Drk2BackupCurrentSave_Click);
             // 
             // btn_Drk2SavBrowse
             // 
@@ -119,6 +143,7 @@ namespace DarkSoulsSaveBackup
             this.btn_Drk2SavBrowse.TabIndex = 5;
             this.btn_Drk2SavBrowse.Text = "Browse";
             this.btn_Drk2SavBrowse.UseVisualStyleBackColor = true;
+            this.btn_Drk2SavBrowse.Click += new System.EventHandler(this.btn_Drk2SavBrowse_Click);
             // 
             // txt_Drk2SaveLoc
             // 
@@ -157,6 +182,28 @@ namespace DarkSoulsSaveBackup
             this.grp_Drk1.TabIndex = 2;
             this.grp_Drk1.TabStop = false;
             this.grp_Drk1.Text = "Dark Souls";
+            // 
+            // btn_Drk1ClearBackups
+            // 
+            this.btn_Drk1ClearBackups.Location = new System.Drawing.Point(271, 74);
+            this.btn_Drk1ClearBackups.Name = "btn_Drk1ClearBackups";
+            this.btn_Drk1ClearBackups.Size = new System.Drawing.Size(116, 23);
+            this.btn_Drk1ClearBackups.TabIndex = 12;
+            this.btn_Drk1ClearBackups.Text = "Clear Backups";
+            this.btn_Drk1ClearBackups.UseVisualStyleBackColor = true;
+            this.btn_Drk1ClearBackups.Click += new System.EventHandler(this.btn_Drk1ClearBackups_Click);
+            // 
+            // lbl_Drk1Warn
+            // 
+            this.lbl_Drk1Warn.AutoSize = true;
+            this.lbl_Drk1Warn.BackColor = System.Drawing.SystemColors.Control;
+            this.lbl_Drk1Warn.ForeColor = System.Drawing.Color.Red;
+            this.lbl_Drk1Warn.Location = new System.Drawing.Point(85, 46);
+            this.lbl_Drk1Warn.Name = "lbl_Drk1Warn";
+            this.lbl_Drk1Warn.Size = new System.Drawing.Size(35, 13);
+            this.lbl_Drk1Warn.TabIndex = 11;
+            this.lbl_Drk1Warn.Text = "label1";
+            this.lbl_Drk1Warn.Visible = false;
             // 
             // lstBox_Drk1SaveGames
             // 
@@ -217,49 +264,6 @@ namespace DarkSoulsSaveBackup
             this.txt_Drk1SaveLoc.ReadOnly = true;
             this.txt_Drk1SaveLoc.Size = new System.Drawing.Size(561, 20);
             this.txt_Drk1SaveLoc.TabIndex = 0;
-            // 
-            // lbl_Drk1Warn
-            // 
-            this.lbl_Drk1Warn.AutoSize = true;
-            this.lbl_Drk1Warn.BackColor = System.Drawing.SystemColors.Control;
-            this.lbl_Drk1Warn.ForeColor = System.Drawing.Color.Red;
-            this.lbl_Drk1Warn.Location = new System.Drawing.Point(85, 46);
-            this.lbl_Drk1Warn.Name = "lbl_Drk1Warn";
-            this.lbl_Drk1Warn.Size = new System.Drawing.Size(35, 13);
-            this.lbl_Drk1Warn.TabIndex = 11;
-            this.lbl_Drk1Warn.Text = "label1";
-            this.lbl_Drk1Warn.Visible = false;
-            // 
-            // lbl_Drk2Warn
-            // 
-            this.lbl_Drk2Warn.AutoSize = true;
-            this.lbl_Drk2Warn.BackColor = System.Drawing.SystemColors.Control;
-            this.lbl_Drk2Warn.ForeColor = System.Drawing.Color.Red;
-            this.lbl_Drk2Warn.Location = new System.Drawing.Point(85, 48);
-            this.lbl_Drk2Warn.Name = "lbl_Drk2Warn";
-            this.lbl_Drk2Warn.Size = new System.Drawing.Size(35, 13);
-            this.lbl_Drk2Warn.TabIndex = 12;
-            this.lbl_Drk2Warn.Text = "label2";
-            this.lbl_Drk2Warn.Visible = false;
-            // 
-            // btn_Drk1ClearBackups
-            // 
-            this.btn_Drk1ClearBackups.Location = new System.Drawing.Point(271, 74);
-            this.btn_Drk1ClearBackups.Name = "btn_Drk1ClearBackups";
-            this.btn_Drk1ClearBackups.Size = new System.Drawing.Size(116, 23);
-            this.btn_Drk1ClearBackups.TabIndex = 12;
-            this.btn_Drk1ClearBackups.Text = "Clear Backups";
-            this.btn_Drk1ClearBackups.UseVisualStyleBackColor = true;
-            this.btn_Drk1ClearBackups.Click += new System.EventHandler(this.btn_Drk1ClearBackups_Click);
-            // 
-            // btn_Drk2ClearBackups
-            // 
-            this.btn_Drk2ClearBackups.Location = new System.Drawing.Point(271, 73);
-            this.btn_Drk2ClearBackups.Name = "btn_Drk2ClearBackups";
-            this.btn_Drk2ClearBackups.Size = new System.Drawing.Size(116, 23);
-            this.btn_Drk2ClearBackups.TabIndex = 13;
-            this.btn_Drk2ClearBackups.Text = "Clear Backups";
-            this.btn_Drk2ClearBackups.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
