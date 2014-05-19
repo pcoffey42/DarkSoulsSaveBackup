@@ -41,10 +41,11 @@ namespace DarkSoulsSaveBackup
 
         private void LoadList(ListBox box, string folder)
         {
-            lstBox_Drk1SaveGames.Items.Clear();
+
+            box.Items.Clear();
             foreach(var str in Directory.GetFiles(folder))
             {
-                if (!str.Equals(String.Format("{0}\\draks0005.sl2", txt_Drk1SaveLoc.Text)))
+                if (!str.Equals(String.Format("{0}\\draks0005.sl2", txt_Drk1SaveLoc.Text)) && !str.Equals(String.Format("{0}\\DARKSII0000.sl2", txt_Drk2SaveLoc.Text)))
                 {
                     box.Items.Add(str);
                 }
