@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DarkSoulsSaveBackup
@@ -16,76 +10,48 @@ namespace DarkSoulsSaveBackup
         public MainForm()
         {
             InitializeComponent();
-
         }
+
+        internal static string DarkSouls1SaveName = @"draks0005";
+        internal static string DarkSouls2SaveName = @"DARKSII0000";
 
 
         private void btn_Drk1SavBrowse_Click(object sender, EventArgs e)
         {
+            var dlg = GetValue(txt_Drk2SaveLoc);
 
-            using (var dlg = new FolderBrowserDialog() { ShowNewFolderButton = false, Description = @"Select Save Folder Location" })
+            if (dlg.ShowDialog() == DialogResult.OK)
             {
-                dlg.RootFolder = Environment.SpecialFolder.MyComputer;
-                if(!txt_Drk1SaveLoc.Text.Equals(string.Empty) && Directory.Exists(txt_Drk1SaveLoc.Text))
-                {
-                    dlg.SelectedPath = txt_Drk1SaveLoc.Text;
-                }
-                if (dlg.ShowDialog() == DialogResult.OK)
-                {
-                    txt_Drk1SaveLoc.Text = dlg.SelectedPath;
-                    LoadList(lstBox_Drk1SaveGames, dlg.SelectedPath);
-                }
-
+                txt_Drk1SaveLoc.Text = dlg.SelectedPath;
+                LoadList(lstBox_Drk1SaveGames, dlg.SelectedPath);
             }
         }
 
-        private void LoadList(ListBox box, string folder)
-        {
 
-            box.Items.Clear();
-            foreach(var str in Directory.GetFiles(folder))
-            {
-                if (!str.Equals(String.Format("{0}\\draks0005.sl2", txt_Drk1SaveLoc.Text)) && !str.Equals(String.Format("{0}\\DARKSII0000.sl2", txt_Drk2SaveLoc.Text)))
-                {
-                    box.Items.Add(str);
-                }
-            }
-        }
 
         private void btn_Drk1BackupCurrentSave_Click(object sender, EventArgs e)
         {
-            if(txt_Drk1SaveLoc.Equals(string.Empty))
+            if (txt_Drk1SaveLoc.Equals(string.Empty))
             {
                 MessageBox.Show("Please select a save folder first!");
                 return;
             }
-            try
+            var newSaveName = CopySave(txt_Drk1SaveLoc.Text, DarkSouls1SaveName);
+
+            if (!newSaveName.Equals(string.Empty))
             {
-                string newFileName = String.Format("{0}\\draks0005_{1}.sl2", txt_Drk1SaveLoc.Text, DateTime.Now.ToString("MMddhmmss"));
-                File.Copy(String.Format("{0}\\draks0005.sl2", txt_Drk1SaveLoc.Text), newFileName);
-                lstBox_Drk1SaveGames.Items.Add(newFileName);
+                lstBox_Drk1SaveGames.Items.Add(newSaveName);
             }
-            catch
-            {
-                MessageBox.Show("Could not copy save!");
-            }
+
         }
+
 
         private void btn_Drk1ClearBackups_Click(object sender, EventArgs e)
         {
-            if(MessageBox.Show("Delete?", "Are you sure you wish to delete all your backup saves?",MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
+            if (MessageBox.Show("Delete?", "Are you sure you wish to delete all your backup saves?", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
             {
-                foreach(var save in lstBox_Drk1SaveGames.Items)
-                {
-                    try
-                    {
-                        File.Delete(save.ToString());
-                    }
-                    catch(Exception ex)
-                    {
-                        MessageBox.Show(String.Format("Could not delete {0}!", save));
-                    }
-                }
+                ClearListBox(lstBox_Drk1SaveGames);
+
                 LoadList(lstBox_Drk1SaveGames, txt_Drk1SaveLoc.Text);
 
             }
@@ -93,16 +59,10 @@ namespace DarkSoulsSaveBackup
 
         private void btn_Drk1LoadSelectedSave_Click(object sender, EventArgs e)
         {
-            if(lstBox_Drk1SaveGames.SelectedItem != null)
+            if (lstBox_Drk1SaveGames.SelectedItem != null)
             {
-                var item = lstBox_Drk1SaveGames.SelectedItem.ToString();
-                var curSave = String.Format("{0}\\draks0005.sl2", txt_Drk1SaveLoc.Text);
-                string newFileName = String.Format("{0}\\draks0005_OriginalBak_{1}.sl2", txt_Drk1SaveLoc.Text, DateTime.Now.ToString("MMddhmmss"));
-                File.Copy(curSave, newFileName);
-                lstBox_Drk1SaveGames.Items.Add(newFileName);
-                
-                File.Delete(curSave);
-                File.Copy(item, curSave);
+                LoadSave(lstBox_Drk1SaveGames.SelectedItem.ToString(), txt_Drk1SaveLoc.Text, DarkSouls1SaveName);
+
             }
             else
             {
@@ -117,15 +77,11 @@ namespace DarkSoulsSaveBackup
                 MessageBox.Show("Please select a save folder first!");
                 return;
             }
-            try
+            var newSaveName = CopySave(txt_Drk2SaveLoc.Text, DarkSouls2SaveName);
+
+            if (!newSaveName.Equals(string.Empty))
             {
-                string newFileName = String.Format("{0}\\DARKSII0000_{1}.sl2", txt_Drk2SaveLoc.Text, DateTime.Now.ToString("MMddhmmss"));
-                File.Copy(String.Format("{0}\\DARKSII0000.sl2", txt_Drk2SaveLoc.Text), newFileName);
-                lstBox_Drk2SaveGames.Items.Add(newFileName);
-            }
-            catch
-            {
-                MessageBox.Show("Could not copy save!");
+                lstBox_Drk2SaveGames.Items.Add(newSaveName);
             }
         }
 
@@ -133,14 +89,7 @@ namespace DarkSoulsSaveBackup
         {
             if (lstBox_Drk2SaveGames.SelectedItem != null)
             {
-                var item = lstBox_Drk2SaveGames.SelectedItem.ToString();
-                var curSave = String.Format("{0}\\DARKSII0000.sl2", txt_Drk2SaveLoc.Text);
-                string newFileName = String.Format("{0}\\DARKSII0000_OriginalBak_{1}.sl2", txt_Drk2SaveLoc.Text, DateTime.Now.ToString("MMddhmmss"));
-                File.Copy(curSave, newFileName);
-                lstBox_Drk2SaveGames.Items.Add(newFileName);
-
-                File.Delete(curSave);
-                File.Copy(item, curSave);
+                LoadSave(lstBox_Drk2SaveGames.SelectedItem.ToString(), txt_Drk2SaveLoc.Text, DarkSouls2SaveName);
             }
             else
             {
@@ -150,40 +99,114 @@ namespace DarkSoulsSaveBackup
 
         private void btn_Drk2ClearBackups_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Delete?", "Are you sure you wish to delete all your backup saves?", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
+            if (MessageBox.Show("Delete?", "Are you sure you wish to delete all your backup saves?", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
-                foreach (var save in lstBox_Drk2SaveGames.Items)
-                {
-                    try
-                    {
-                        File.Delete(save.ToString());
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(String.Format("Could not delete {0}!", save));
-                    }
-                }
+                ClearListBox(lstBox_Drk2SaveGames);
                 LoadList(lstBox_Drk2SaveGames, txt_Drk2SaveLoc.Text);
-
             }
         }
+
+
 
         private void btn_Drk2SavBrowse_Click(object sender, EventArgs e)
         {
-            using (var dlg = new FolderBrowserDialog() { ShowNewFolderButton = false, Description = @"Select Save Folder Location" })
-            {
-                dlg.RootFolder = Environment.SpecialFolder.MyComputer;
-                if (!txt_Drk2SaveLoc.Text.Equals(string.Empty) && Directory.Exists(txt_Drk2SaveLoc.Text))
-                {
-                    dlg.SelectedPath = txt_Drk2SaveLoc.Text;
-                }
-                if (dlg.ShowDialog() == DialogResult.OK)
-                {
-                    txt_Drk2SaveLoc.Text = dlg.SelectedPath;
-                    LoadList(lstBox_Drk2SaveGames, dlg.SelectedPath);
-                }
+            var dlg = GetValue(txt_Drk2SaveLoc);
 
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                txt_Drk2SaveLoc.Text = dlg.SelectedPath;
+                LoadList(lstBox_Drk2SaveGames, dlg.SelectedPath);
             }
         }
+
+        private static string CopySave(string saveLocation, string saveName)
+        {
+            var returnString = string.Empty;
+            try
+            {
+                returnString = String.Format("{0}\\{1}_{2}.sl2", saveLocation, saveName,
+                    DateTime.Now.ToString("MMddhmmss"));
+                File.Copy(String.Format("{0}\\{1}.sl2", saveLocation, saveName), returnString);
+            }
+            catch
+            {
+                MessageBox.Show("Could not copy save!");
+            }
+            return returnString;
+        }
+
+        private static void ClearListBox(ListBox listBox)
+        {
+            foreach (var save in listBox.Items)
+            {
+                try
+                {
+                    File.Delete(save.ToString());
+                }
+                catch
+                {
+                    MessageBox.Show(String.Format("Could not delete {0}!", save));
+                }
+            }
+        }
+        private static FolderBrowserDialog GetValue(Control saveLoc)
+        {
+            var dlg = new FolderBrowserDialog
+            {
+                ShowNewFolderButton = false,
+                Description = @"Select Save Folder Location",
+                RootFolder = Environment.SpecialFolder.MyComputer
+            };
+
+            if (!saveLoc.Text.Equals(string.Empty) && Directory.Exists(saveLoc.Text))
+            {
+                dlg.SelectedPath = saveLoc.Text;
+            }
+
+            return dlg;
+        }
+
+        private void LoadList(ListBox box, string folder)
+        {
+            box.Items.Clear();
+            var files = Directory.GetFiles(folder);
+
+            var drk1Save = String.Format("{0}\\{1}.sl2", txt_Drk1SaveLoc.Text, DarkSouls1SaveName);
+            var drk2Save = String.Format("{0}\\{1}.sl2", txt_Drk2SaveLoc.Text, DarkSouls2SaveName);
+            if (!files.Contains(drk1Save) && !files.Contains(drk2Save))
+            {
+                MessageBox.Show(this, @"Invalid Directory", @"The selected folder does not contain Dark Souls saves!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            foreach (var str in files.Where(str => !str.Equals(drk1Save) && !str.Equals(drk2Save)))
+            {
+                box.Items.Add(str);
+            }
+        }
+
+
+        private void LoadSave(string item, string saveLocation, string saveName)
+        {
+            var curSave = String.Format("{0}\\{1}.sl2", saveLocation, saveName);
+            string newFileName = String.Format("{0}\\{1}_OriginalBak_{2}.sl2", saveLocation, saveName,
+                DateTime.Now.ToString("MMddhmmss"));
+            try
+            {
+                File.Copy(curSave, newFileName);
+                lstBox_Drk2SaveGames.Items.Add(newFileName);
+
+                File.Delete(curSave);
+                File.Copy(item, curSave);
+            }
+            catch
+            {
+                MessageBox.Show(this, @"Loading Save Failure", @"Could not load the save file!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+
+        }
+
     }
+
 }
